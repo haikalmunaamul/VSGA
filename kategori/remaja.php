@@ -1,11 +1,31 @@
 <?php
 session_start();
-
-// Memeriksa apakah pengguna telah login
 if (!isset($_SESSION['username'])) {
-    header("Location: login.php"); // Redirect ke halaman login jika belum login
+    header("Location: login.php");
     exit();
 }
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "perpustakaan";
+
+// Membuat koneksi
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Memeriksa koneksi
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fungsi untuk membaca buku kategori fiksi
+function readRemajaBooks($conn) {
+    $sql = "SELECT * FROM books WHERE category='Remaja'";
+    $result = $conn->query($sql);
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+$fiksi_books = readRemajaBooks($conn);
 ?>
 
 <!DOCTYPE html>
@@ -24,9 +44,8 @@ if (!isset($_SESSION['username'])) {
     <nav>
         <ul>
             <li><a href="../index.php">Beranda</a></li>
-            <li><a href="#">Layanan</a></li>
-            <li><a href="#">Koleksi</a></li>
-            <li><a href="#">Info</a></li>
+            <li><a href="../layanan.php">Layanan</a></li>
+            <li><a href="../koleksi.php">Koleksi</a></li>
             <li><a href="../logout.php">Logout</a></li>
         </ul>
     </nav>
@@ -42,13 +61,21 @@ if (!isset($_SESSION['username'])) {
             </ul>
         </aside>
         <main>
-            <h2>Kategori Remaja</h2>
-            <p>Di sini adalah koleksi buku remaja yang tersedia di perpustakaan kami:</p>
-            <ul>
-                <li>Judul Buku 1</li>
-                <li>Judul Buku 2</li>
-                <!-- Masukkan daftar buku fiksi lainnya sesuai kebutuhan -->
-            </ul>
+            <h2>Kategori Non Fiksi</h2>
+            <table>
+                <tr>
+                    <th>Judul</th>
+                    <th>Penulis</th>
+                    <th>Tahun Terbit</th>
+                </tr>
+                <?php foreach ($fiksi_books as $book): ?>
+                    <tr>
+                        <td><?php echo $book['title']; ?></td>
+                        <td><?php echo $book['author']; ?></td>
+                        <td><?php echo $book['published_year']; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
         </main>
     </div>
     <footer>

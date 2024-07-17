@@ -1,3 +1,15 @@
+<?php
+// Memulai sesi
+session_start();
+
+// Memeriksa apakah pengguna telah login
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php"); // Redirect ke halaman login jika belum login
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -6,6 +18,7 @@
     <title>Perpustakaan Bersama</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <header>
@@ -13,20 +26,21 @@
     </header>
     <nav>
         <ul>
-            <li><a href="index.php">Beranda</a></li>
-            <li><a href="layanan1.php">Layanan</a></li>
-            <li><a href="login.php">Login</a></li> <!-- Mengganti "Koleksi" dan "Logout" menjadi "Login" -->
+            <li><a href="beranda.php">Beranda</a></li>
+            <li><a href="layanan.php">Layanan</a></li>
+            <li><a href="koleksi.php">Koleksi</a></li>
+            <li><a href="logout.php">Logout</a></li> <!-- Tautan Logout -->
         </ul>
     </nav>
     <div class="container">
         <aside>
             <h2>Kategori Buku</h2>
             <ul>
-                <li><a href="index/fiksi1.php"><i class="fas fa-book"></i> Fiksi</a></li>
-                <li><a href="index/non-fiksi1.php"><i class="fas fa-book-open"></i> Non-Fiksi</a></li>
-                <li><a href="index/anak1.php"><i class="fas fa-child"></i> Anak</a></li>
-                <li><a href="index/remaja1.php"><i class="fas fa-user-graduate"></i> Remaja</a></li>
-                <li><a href="index/dewasa1.php"><i class="fas fa-user"></i> Dewasa</a></li>
+                <li><a href="kategori/fiksi.php"><i class="fas fa-book"></i> Fiksi</a></li>
+                <li><a href="kategori/non-fiksi.php"><i class="fas fa-book-open"></i> Non-Fiksi</a></li>
+                <li><a href="kategori/anak.php"><i class="fas fa-child"></i> Anak</a></li>
+                <li><a href="kategori/remaja.php"><i class="fas fa-user-graduate"></i> Remaja</a></li>
+                <li><a href="kategori/dewasa.php"><i class="fas fa-user"></i> Dewasa</a></li>
             </ul>
         </aside>
         <main>

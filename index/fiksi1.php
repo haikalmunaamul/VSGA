@@ -1,9 +1,5 @@
 <?php
 session_start();
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
-    exit();
-}
 
 $servername = "localhost";
 $username = "root";
@@ -44,24 +40,23 @@ $fiksi_books = readNonFiksiBooks($conn);
     <nav>
         <ul>
             <li><a href="../index.php">Beranda</a></li>
-            <li><a href="../layanan.php">Layanan</a></li>
-            <li><a href="../koleksi.php">Koleksi</a></li>
-            <li><a href="../logout.php">Logout</a></li>
+            <li><a href="../layanan1.php">Layanan</a></li>
+            <li><a href="../login.php">Login</a></li>
         </ul>
     </nav>
     <div class="container">
         <aside>
             <h2>Kategori Buku</h2>
             <ul>
-                <li><a href="fiksi.php"><i class="fas fa-book"></i> Fiksi</a></li>
-                <li><a href="non-fiksi.php"><i class="fas fa-book-open"></i> Non-Fiksi</a></li>
-                <li><a href="anak.php"><i class="fas fa-child"></i> Anak</a></li>
-                <li><a href="remaja.php"><i class="fas fa-user-graduate"></i> Remaja</a></li>
-                <li><a href="dewasa.php"><i class="fas fa-user"></i> Dewasa</a></li>
+                <li><a href="fiksi1.php"><i class="fas fa-book"></i> Fiksi</a></li>
+                <li><a href="non-fiksi1.php"><i class="fas fa-book-open"></i> Non-Fiksi</a></li>
+                <li><a href="anak1.php"><i class="fas fa-child"></i> Anak</a></li>
+                <li><a href="remaja1.php"><i class="fas fa-user-graduate"></i> Remaja</a></li>
+                <li><a href="dewasa1.php"><i class="fas fa-user"></i> Dewasa</a></li>
             </ul>
         </aside>
         <main>
-            <h2>Kategori Non Fiksi</h2>
+            <h2>Kategori Fiksi</h2>
             <table>
                 <tr>
                     <th>Judul</th>

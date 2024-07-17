@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $row['password'])) {
             // Menyimpan data pengguna ke sesi
             $_SESSION['username'] = $username;
-            header("Location: index.php"); // Redirect ke halaman welcome
+            header("Location: beranda.php"); // Redirect ke halaman beranda
             exit();
         } else {
             $error_message = "Password salah!";
@@ -57,7 +57,7 @@ $conn->close();
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body>
     <div class="container">
